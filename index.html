@@ -1,128 +1,122 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Xeno - Le jeu farming ultime</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xeno - Le jeu</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
+      color: white;
     }
 
     header {
       background-color: #111;
-      padding: 20px 0;
       text-align: center;
+      padding: 1em 0;
     }
 
     header h1 {
-      color: #38e7c5;
-      font-size: 36px;
       margin: 0;
-    }
-
-    header p {
-      margin-top: 5px;
-      font-size: 18px;
+      color: #40e0d0;
     }
 
     nav {
       display: flex;
       justify-content: center;
-      background-color: #1c1c1c;
-      padding: 10px 0;
+      gap: 2rem;
+      background-color: #1a1a1a;
+      padding: 0.5em 0;
     }
 
     nav a {
-      color: #38e7c5;
+      color: #40e0d0;
       text-decoration: none;
-      margin: 0 20px;
       font-weight: bold;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    #accueil, #jeu {
+      display: none;
+      padding: 2em;
     }
 
-    .section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
+    #accueil.active, #jeu.active {
+      display: block;
     }
 
-    .section h2 {
-      color: #38e7c5;
-    }
-
-    .btn {
-      background-color: #38e7c5;
-      color: #000;
+    button {
+      background-color: #40e0d0;
+      color: black;
       border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 6px;
+      padding: 1em 2em;
+      font-size: 1rem;
+      border-radius: 5px;
       cursor: pointer;
-      margin-top: 20px;
     }
 
-    .btn:hover {
-      background-color: #2ed2ae;
-    }
-
-    footer {
-      background-color: #111;
-      color: #aaa;
-      text-align: center;
-      padding: 20px 10px;
-      font-size: 14px;
+    #gameCanvas {
+      background-color: #222;
+      display: block;
+      margin: 2em auto;
+      border: 2px solid #40e0d0;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Xeno</h1>
-    <p>Farme. Améliore. Progresse.</p>
-  </header>
+<header>
+  <h1>Xeno</h1>
+  <p>FARME. AMÉLIORE. PROGRESSE.</p>
+</header>
 
-  <nav>
-    <a href="#gameplay">Gameplay</a>
-    <a href="#ressources">Ressources</a>
-    <a href="#outils">Outils</a>
-  </nav>
+<nav>
+  <a href="#gameplay">Gameplay</a>
+  <a href="#ressources">Ressources</a>
+  <a href="#outils">Outils</a>
+</nav>
 
-  <section class="section" id="gameplay">
-    <h2>Le concept</h2>
-    <p>
-      Xeno est un jeu de farming simple et captivant. Le but est de récolter des ressources, améliorer ton outil de production, et atteindre des niveaux toujours plus avancés, sans éléments payants intrusifs. Le jeu est solo, idéal pour progresser à ton rythme.
-    </p>
-    <button class="btn">Jouer maintenant</button>
-  </section>
+<section id="accueil" class="active">
+  <h2>Le concept</h2>
+  <p>Xeno est un jeu de farming simple et captivant. Le but est de récolter des ressources, améliorer ton outil de production, et atteindre des niveaux toujours plus avancés, sans éléments payants intrusifs.</p>
+  <button onclick="lancerJeu()">Jouer maintenant</button>
+</section>
 
-  <section class="section" id="ressources">
-    <h2>Les Ressources</h2>
-    <p>
-      Il existe deux ressources dans Xeno : une facile à obtenir, l'autre plus rare. La ressource commune permet de progresser normalement. La ressource rare permet d'améliorer ton outil ou d’obtenir des bonus spéciaux (skins, boosts...).
-    </p>
-  </section>
+<section id="jeu">
+  <h2>Phase de jeu</h2>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <p>Utilise les flèches de ton clavier pour déplacer ton personnage !</p>
+</section>
 
-  <section class="section" id="outils">
-    <h2>Les Outils</h2>
-    <p>
-      Ton outil de farming peut être amélioré à l’aide des deux ressources. Plus il est amélioré, plus ta production devient rapide. La combinaison des deux ressources est nécessaire pour débloquer le plein potentiel du jeu.
-    </p>
-  </section>
+<script>
+  function lancerJeu() {
+    document.getElementById('accueil').classList.remove('active');
+    document.getElementById('jeu').classList.add('active');
+    lancerAnimation();
+  }
 
-  <footer>
-    Créé par Youssef | Xeno Game | Collège la Fraternité
-  </footer>
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  let x = 180, y = 180, size = 20;
+
+  function drawPlayer() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#40e0d0";
+    ctx.fillRect(x, y, size, size);
+  }
+
+  function lancerAnimation() {
+    drawPlayer();
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "ArrowUp") y -= 10;
+      if (e.key === "ArrowDown") y += 10;
+      if (e.key === "ArrowLeft") x -= 10;
+      if (e.key === "ArrowRight") x += 10;
+      drawPlayer();
+    });
+  }
+</script>
 
 </body>
 </html>
