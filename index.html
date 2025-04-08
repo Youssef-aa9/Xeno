@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Xeno - Le jeu farming ultime</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -13,34 +17,38 @@
     }
 
     header {
+      background-color: #111;
+      padding: 20px 0;
       text-align: center;
-      padding: 50px 20px 30px;
-      background: #111;
     }
 
-    h1 {
-      font-size: 3em;
+    header h1 {
+      color: #38e7c5;
+      font-size: 36px;
       margin: 0;
-      color: #4ce0d2;
     }
 
-    p.slogan {
-      font-size: 1.3em;
-      margin-top: 10px;
-      color: #eee;
+    header p {
+      margin-top: 5px;
+      font-size: 18px;
     }
 
     nav {
-      background-color: #222;
+      display: flex;
+      justify-content: center;
+      background-color: #1c1c1c;
       padding: 10px 0;
-      text-align: center;
     }
 
     nav a {
-      color: #4ce0d2;
-      margin: 0 15px;
+      color: #38e7c5;
       text-decoration: none;
+      margin: 0 20px;
       font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
     }
 
     .section {
@@ -49,100 +57,72 @@
       margin: auto;
     }
 
-    h2 {
-      color: #4ce0d2;
+    .section h2 {
+      color: #38e7c5;
     }
 
-    .resources {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
+    .btn {
+      background-color: #38e7c5;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
       margin-top: 20px;
     }
 
-    .resource {
-      background-color: #1c2a35;
-      border: 1px solid #4ce0d2;
-      border-radius: 8px;
-      padding: 20px;
-      width: 250px;
-      margin: 10px;
-      text-align: center;
+    .btn:hover {
+      background-color: #2ed2ae;
     }
 
     footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      font-size: 0.9em;
+      background-color: #111;
       color: #aaa;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #4ce0d2;
-      color: #000;
-      font-weight: bold;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-
-    .button:hover {
-      background: #3cb1a6;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Xeno</h1>
-  <p class="slogan">Farme. Améliore. Progresse.</p>
-</header>
+  <header>
+    <h1>Xeno</h1>
+    <p>Farme. Améliore. Progresse.</p>
+  </header>
 
-<nav>
-  <a href="#gameplay">Gameplay</a>
-  <a href="#ressources">Ressources</a>
-  <a href="#outils">Outils</a>
-</nav>
+  <nav>
+    <a href="#gameplay">Gameplay</a>
+    <a href="#ressources">Ressources</a>
+    <a href="#outils">Outils</a>
+  </nav>
 
-<div class="section" id="gameplay">
-  <h2>Le concept</h2>
-  <p>
-    Xeno est un jeu de farming simple et captivant. Le but est de récolter des ressources, 
-    améliorer ton outil de production, et atteindre des niveaux toujours plus avancés, 
-    sans éléments payants intrusifs. Le jeu est solo, idéal pour progresser à ton rythme.
-  </p>
-  <a class="button" href="#">Jouer maintenant</a>
-</div>
+  <section class="section" id="gameplay">
+    <h2>Le concept</h2>
+    <p>
+      Xeno est un jeu de farming simple et captivant. Le but est de récolter des ressources, améliorer ton outil de production, et atteindre des niveaux toujours plus avancés, sans éléments payants intrusifs. Le jeu est solo, idéal pour progresser à ton rythme.
+    </p>
+    <button class="btn">Jouer maintenant</button>
+  </section>
 
-<div class="section" id="ressources">
-  <h2>Les Ressources</h2>
-  <div class="resources">
-    <div class="resource">
-      <h3>Ressource A</h3>
-      <p>Facile à obtenir. Utilisée pour les améliorations de base et la progression normale.</p>
-    </div>
-    <div class="resource">
-      <h3>Ressource X</h3>
-      <p>Rare. Permet d’acheter des skins et accélérer certaines évolutions. Actuellement gratuite.</p>
-    </div>
-  </div>
-</div>
+  <section class="section" id="ressources">
+    <h2>Les Ressources</h2>
+    <p>
+      Il existe deux ressources dans Xeno : une facile à obtenir, l'autre plus rare. La ressource commune permet de progresser normalement. La ressource rare permet d'améliorer ton outil ou d’obtenir des bonus spéciaux (skins, boosts...).
+    </p>
+  </section>
 
-<div class="section" id="outils">
-  <h2>L’Outil de Farm</h2>
-  <p>
-    Ton outil principal peut être amélioré en combinant les deux ressources. 
-    Attention : la ressource rare est utilisée avec modération. Plus l’outil est avancé, 
-    plus ta production augmente.
-  </p>
-</div>
+  <section class="section" id="outils">
+    <h2>Les Outils</h2>
+    <p>
+      Ton outil de farming peut être amélioré à l’aide des deux ressources. Plus il est amélioré, plus ta production devient rapide. La combinaison des deux ressources est nécessaire pour débloquer le plein potentiel du jeu.
+    </p>
+  </section>
 
-<footer>
-  Créé par Youssef — Projet Xeno © 2025
-</footer>
+  <footer>
+    Créé par Youssef | Xeno Game | Collège la Fraternité
+  </footer>
 
 </body>
 </html>
